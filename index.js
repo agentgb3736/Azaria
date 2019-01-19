@@ -6,7 +6,7 @@ const weather = require('weather-js');
 
 const fs = require('fs');
 
-var prefix = "/";
+var prefix = "az!";
 
 
 bot.on('ready', () => {
@@ -14,7 +14,7 @@ bot.on('ready', () => {
     setInterval(changing_status, 1000);
     function changing_status() {
 
-      let status = ["[🌌] /help | "+bot.guilds.size+"s.", "[🎊] Happy 2019! ", "[🌐]#Go110servs", "[💪]On compte sur vous", "[👮]Protège "+bot.users.size+"users."]
+      let status = ["[🌌] az!help", "Fête", "Rush", "SuperBot", "protections"]
       let random = status[Math.floor(Math.random() * status.length)]
       bot.user.setActivity(random)
 
@@ -22,7 +22,7 @@ bot.on('ready', () => {
   });
 
 bot.on("guildMemberAdd", member => {
-  const bvn = member.guild.channels.find(m => m.name === "『📩』bienvenue")
+  const bvn = member.guild.channels.find(m => m.name === "bienvenue")
   if(!bvn) return;
   const embed = new Discord.RichEmbed()
   .setColor('#04B404')
@@ -30,7 +30,7 @@ bot.on("guildMemberAdd", member => {
   .setTitle("Arrivée d'un nouvel utilisateur")
   .addField("Un nouvel utilisateur vient d'arriver", `Il sagit de [${member.user.tag}](https://discordapp.com/)`, true)
   .setDescription("J'espère tu vas passer un bon moment parmi nous")
-  .addField("Ma commande est **`/help`**", "Si tu souhaites savoir mon fonctionnement")
+  .addField("Ma commande est **`az!help`**", "Si tu souhaites savoir mon fonctionnement")
   .addField(`Nombre de membres après l'arrivée de __${member.user.tag}__`, member.guild.memberCount)
   .setFooter(`ID : ${member.user.id}`)
   .setTimestamp()
@@ -38,7 +38,7 @@ bot.on("guildMemberAdd", member => {
 })
 
 bot.on("guildMemberRemove", member => {
-  const bvn = member.guild.channels.find(m => m.name === "『📩』bienvenue")
+  const bvn = member.guild.channels.find(m => m.name === "bienvenue")
   if(!bvn) return;
   const embed = new Discord.RichEmbed()
   .setColor('#FF4000')
@@ -52,7 +52,7 @@ bot.on("guildMemberRemove", member => {
 })
 
 bot.on("guildMemberAdd", member => {
-  const bvn2 = member.guild.channels.find(m => m.name === "『🚫』logs-bienvenue")
+  const bvn2 = member.guild.channels.find(m => m.name === "logs")
   if (!bvn2) return;
   bvn2.send(`Bienvenue ${member}, Bienvenue je t'invite à lire le règlement.
 Et surtout passe de bons moments avec nous !`)
@@ -69,9 +69,8 @@ if(message.content === prefix + "partners") {
     var partner_embed = new Discord.RichEmbed()
     .setColor("#f9ff01")
     .setTitle("Partenaire du Bot !")
-    .addField("NoraVia V1", ('[Lien du Serveur](https://discord.gg/z76uj8V)') , true)
-    .addField("RaidAvoid", ('[Lien du Serveur](https://discord.gg/ryEuM6B)') , true)
-    .setFooter("© 2018 SecurityProtect", bot.user.displayAvatarURL)
+    .addField("Non", "Aucune partenaires" , true)
+    .setFooter("AZARIA", bot.user.displayAvatarURL)
     .setTimestamp()
         message.channel.send(partner_embed)
 }
@@ -85,7 +84,7 @@ if(message.content === prefix + "help") {
     message.delete(message.author); 
     var help_embed = new Discord.RichEmbed()
     .setColor("RANDOM")
-    .setTitle("__**Mon prefix actuel est [/] !**__")
+    .setTitle("__**Mon prefix actuel est [az!] !**__")
     .setDescription("__**Liste des commandes disponible**__ [12]")
     .addField("•__**Administration**__ [2]", "``ban <user>``,``kick <user>``")
     .addField("•__**Modération**__ [3]", "``clear``,``mute``,``unmute``")
@@ -93,9 +92,9 @@ if(message.content === prefix + "help") {
     .addField("•__**Utilitaires**__ [3]", "``stats``,``info``,``id``,``ui``")
     .addField("•__**Anti-Raid**__ [4]", "``sp``,``report``,``rb``,``rules``")
     .addField("• __** <> **__","``Obligatoire``")
-    .addField("SupportBot", ('[Support du Bot](https://discord.gg/88rtxDd)') , true)
-    .addField("Invite", ('[SecurityProtect®『🚫』](https://discordapp.com/oauth2/authorize?client_id=511104745096609792&scope=bot&permissions=2146958847)') , true)
-    .setFooter("© 2018 SecurityProtect V.3.1.0", bot.user.displayAvatarURL) 
+    .addField("SupportBot", "Bot dead") , true)
+    .addField("Invite", "Bot dead" , true)
+    .setFooter("Azaria", bot.user.displayAvatarURL) 
     .setTimestamp()
     message.channel.send(help_embed)
     console.log("Un utilisateur a effectuer la commande d'aide")  
@@ -122,7 +121,7 @@ bot.on('message', message => {
      .addField("Bots", message.guild.members.filter(m => m.user.bot).size)
      .addField("Roles", message.guild.roles.size)
      .setColor("RANDOM")
-     .setFooter("© 2018 SecurityProtect", bot.user.displayAvatarURL)
+     .setFooter("Azaria", bot.user.displayAvatarURL)
 	 .setTimestamp()
 	 
 message.channel.send(info_embed)
@@ -144,7 +143,7 @@ if(message.content === prefix + "ui") {
     .addField("Crée Le", `${message.author.createdAt}`)
     .addField("Tu l'as rejoin le", `${message.member.joinedAt}`)
     .addField("Gban", "``En développement``")
-    .setFooter("© 2018 SecurityProtect", bot.user.displayAvatarURL)
+    .setFooter("Azaria", bot.user.displayAvatarURL)
     .setTimestamp()
     message.channel.send(ui_embed)
 console.log("Commande effectue !")
@@ -163,7 +162,7 @@ if(message.content === prefix + "stats") {
     .addField("Users", bot.users.size)
     .addField("Servers", bot.guilds.size)
     .addField("Channels", bot.channels.size)
-    .setFooter("© 2018 SecurityProtect", bot.user.displayAvatarURL)
+    .setFooter("Azaria", bot.user.displayAvatarURL)
     .setTimestamp()
     
 message.channel.send(stats_embed)
@@ -191,7 +190,7 @@ if(message.content === prefix + "rules") {
     .setTitle("Voici le réglement !")
     .addField("1.Utilisateurs", 
     "1.Spam participation à raid. 2. Non respect des TOS de Discord __**Selfbots**__. 3. Abus de pouvoir. 4. Destruction de serveur. 5.Harcelement __**DDOS,DOX**__ 6. Création de bot malveillant. 7. Pseudo incorect.")
-    .setFooter("© 2018 SecurityProtect", bot.user.displayAvatarURL)
+    .setFooter("Azaria", bot.user.displayAvatarURL)
     .setTimestamp()
     message.channel.send(rules_embed)
 console.log("Commande effectue !")
@@ -355,7 +354,7 @@ if(message.content.startsWith(prefix + "sp")){
     .addField("Alerte 🚨", ara)
     .addField("🚔 Message envoyé par "+message.author.username+"#"+message.author.discriminator, "🆔 "+message.author.id)
     .addField("Depuis le Serveur", message.guild.name)
-    message.channel.send("**Tous le staff de SecurityProtect à été alerté ! 🚨**")
+    message.channel.send("**Tous le staff de Azaria à été alerté ! 🚨**")
     bot.channels.find("id", "522508136884731904").send(y)
     bot.channels.find("id", "522508136884731904").send(" <@&516633518609137688>")
     message.delete()
@@ -397,7 +396,7 @@ if(message.content.startsWith(prefix + "sp")){
         .addField("Report Bugs 🚨", ara)
         .addField("🚔 Message envoyé par "+message.author.username+"#"+message.author.discriminator, "🆔 "+message.author.id)
         .addField("Depuis le Serveur", message.guild.name)
-        message.channel.send("**les Administrateur de SecurityProtect à été alerté ! 🚨**")
+        message.channel.send("**les Administrateur de Azaria à été alerté ! 🚨**")
         bot.channels.find("id", "523494279046234112").send(y)
         bot.channels.find("id", "523494279046234112").send(" <@&511106207784763422>")
         message.delete()
